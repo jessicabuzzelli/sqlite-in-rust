@@ -1,0 +1,13 @@
+[package]
+name = "sqlite-in-rust"
+version = "0.1.0"
+edition = "2021"
+authors = ["jessicabuzzelli"]
+readme = "README.md"
+description = "Basic SQLite implementation in Rust"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.1.8", features = ["derive"] }
+rustfmt = "0.10.0"
