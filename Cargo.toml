@@ -11,3 +11,4 @@ description = "Basic SQLite implementation in Rust"
 [dependencies]
 clap = { version = "4.1.8", features = ["derive"] }
 rustfmt = "0.10.0"
+rustyline = "11.0.0"
