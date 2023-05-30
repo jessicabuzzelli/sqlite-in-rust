@@ -1,9 +1,12 @@
+use crate::helpers::get_first_word;
+
 // the CLI will accept 2 types of commands:
 // 1) sql: create table, insert row
 // 2) dot: .open <db>, .close
 
 // SQLCommand
 
+// ANSI-SQL command types
 pub enum SqlCommand {
     CreateTable(String),
     // InsertRows(String),
@@ -15,8 +18,10 @@ pub enum SqlCommand {
 }
 
 impl SqlCommand {
+
+    // generates a new SQLCommand based on the first word of the command
     pub fn new(command: String) -> SqlCommand {
-        let first_word = command.trim().split(" ").collect::<Vec<&str>>()[0];
+        let first_word = get_first_word(&command);
         match first_word {
             "create" => SqlCommand::CreateTable(command),
             "insert" => SqlCommand::NotYetImplemented(command),
@@ -26,25 +31,27 @@ impl SqlCommand {
             _ => SqlCommand::Unknown(command),
         }
     }
-
 }
 
 // DotCommand
 
+// non-SQL, adminstrative CLI commands
 pub enum DotCommand {
     Exit,
     Help,
-    NotYetImplemented(String),
     // Tables,
     // Save,
     // Open(String),
     // Database,
+    NotYetImplemented(String),
     Unknown(String),
 }
 
 impl DotCommand {
+
+    // generates a new DotCommand based on the first word of the command
     pub fn new(command: String) -> DotCommand {
-        let first_word = command.trim().split(" ").collect::<Vec<&str>>()[0];
+        let first_word = get_first_word(&command);
         match first_word {
             ".exit" => DotCommand::Exit,
             ".quit" => DotCommand::Exit,
@@ -59,6 +66,7 @@ impl DotCommand {
 
 }
 
+// returns a string listing possible DotCommands and their usage
 pub fn get_help_text() -> String {
     let string = format!(
         "{}{}{}{}{}{}{}",
@@ -70,12 +78,6 @@ pub fn get_help_text() -> String {
         ".tables                 - List names of tables in the current database\n",
         ".database               - Prints name of current database\n",
     );
-    string
+
+    return string
 }
-
-// CommandType
-
-// pub enum CommandType {
-//     DotCommand(DotCommand),
-//     SqlCommand(SqlCommand),
-// }

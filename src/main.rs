@@ -1,13 +1,17 @@
 extern crate clap;
 
+mod sql;
 mod commands;
-mod processing;
+mod handlers;
 mod cli;
+mod helpers;
+mod db;
 
 use crate::cli::run_cli_loop;
 use std::process::exit;
 use clap::Command;
 
+// #[allow(dead_code)]
 fn main() {
 
     //  init CLI

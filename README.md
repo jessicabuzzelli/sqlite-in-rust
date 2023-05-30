@@ -6,4 +6,7 @@ Inspired by https://cstack.github.io/db_tutorial/
 
 ### TODO
 
-- [ ] something 
+- [ ] table implementation
+- [ ] row implementation
+- [ ] create table
+- [ ] delete table
